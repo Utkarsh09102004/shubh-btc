@@ -9,7 +9,12 @@ bool CardLinksServiceImpl::addCreditCard(const CreditCard &creditCard) {
         return false;
     }
 
+    if (this->cardIdByCardNumber.count(creditCard.getCardNumber()) > 0) {
+        return false;
+    }
+
     this->cardsById[creditCard.getId()] = creditCard;
+    this->cardIdByCardNumber[creditCard.getCardNumber()] = creditCard.getId();
     return true;
 }
 
@@ -19,6 +24,10 @@ bool CardLinksServiceImpl::linkCreditCards(std::string cardId1, std::string card
     }
 
     if (!this->isKnownCard(cardId1) || !this->isKnownCard(cardId2)) {
+        return false;
+    }
+
+    if (this->cardsById.at(cardId1).getIssuer() != this->cardsById.at(cardId2).getIssuer()) {
         return false;
     }
 

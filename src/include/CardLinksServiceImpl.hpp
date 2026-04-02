@@ -31,6 +31,8 @@ private:
 
     std::map<std::string, CreditCard> cardsById;
 
+    std::map<std::string, std::string> cardIdByCardNumber;
+
     std::map<std::string, CardLink> linkByPrimaryCardId;
 
     std::map<std::string, std::string> primaryCardIdByLinkedCardId;
