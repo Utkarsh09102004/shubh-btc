@@ -1,10 +1,6 @@
 #include "CardLinksServiceImpl.hpp"
 
 bool CardLinksServiceImpl::addCreditCard(const CreditCard &creditCard) {
-    if (creditCard.getId().empty()) {
-        return false;
-    }
-
     if (this->cardsById.count(creditCard.getId()) > 0) {
         return false;
     }
@@ -19,14 +15,6 @@ bool CardLinksServiceImpl::addCreditCard(const CreditCard &creditCard) {
 }
 
 bool CardLinksServiceImpl::linkCreditCards(std::string cardId1, std::string cardId2, std::string reason) {
-    if (cardId1.empty() || cardId2.empty() || reason.empty() || cardId1 == cardId2) {
-        return false;
-    }
-
-    if (!this->isKnownCard(cardId1) || !this->isKnownCard(cardId2)) {
-        return false;
-    }
-
     if (this->cardsById.at(cardId1).getIssuer() != this->cardsById.at(cardId2).getIssuer()) {
         return false;
     }
