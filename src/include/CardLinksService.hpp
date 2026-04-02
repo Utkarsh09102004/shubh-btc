@@ -1,8 +1,8 @@
 #ifndef CARDLINKSSERVICE_HPP
 #define CARDLINKSSERVICE_HPP
 
-#include "CardLink.hpp"
-#include "CreditCard.hpp"
+#include "models/CardLink.hpp"
+#include "models/CreditCard.hpp"
 
 #include <stdexcept>
 #include <string>

@@ -2,8 +2,9 @@
 #define CARDLINKSSERVICEIMPL_HPP
 
 #include "CardLinksService.hpp"
-#include <algorithm>
 #include <map>
+#include <string>
+#include <vector>
 
 class CardLinksServiceImpl : public CardLinksService {
 public:
@@ -18,6 +19,21 @@ public:
     std::vector<CardLink> getLinkChain(std::string groupId) override;
 
 private:
+    bool isKnownCard(const std::string &cardId) const;
+
+    bool hasIncomingLink(const std::string &cardId) const;
+
+    bool hasOutgoingLink(const std::string &cardId) const;
+
+    bool isHeadCard(const std::string &cardId) const;
+
+    void updateGroupIdsFromHead(const std::string &groupId);
+
+    std::map<std::string, CreditCard> cardsById;
+
+    std::map<std::string, CardLink> linkByPrimaryCardId;
+
+    std::map<std::string, std::string> primaryCardIdByLinkedCardId;
 };
 
 #endif
